@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KhetBox – Fresh farm vegetables at your door</title>
+<meta name="description" content="KhetBox delivers a weekly box of fresh vegetables picked by local farmers in Gujarat.">
+<style>
+:root{
+  --green:#1F5130; --green-d:#143A22; --lime:#C8E64C; --tomato:#E5532D;
+  --leaf-50:#EAF4E2; --bg:#FAFBF7; --white:#fff; --ink:#18221B; --muted:#52605A; --line:#DDE5D8;
+  --font:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:88px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;font-family:var(--font);font-size:16px;line-height:1.6;color:var(--ink);background:var(--bg);overflow-x:hidden}
+h1,h2,h3,h4,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tomato);outline-offset:3px}
+.wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+
+/* Type */
+h1{font-size:clamp(2.1rem,5.5vw,3.6rem);line-height:1.08;letter-spacing:-.025em;color:var(--green-d);font-weight:800}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem);line-height:1.15;letter-spacing:-.015em;color:var(--green-d);font-weight:800}
+h3{font-size:1.25rem;line-height:1.3;color:var(--green-d);font-weight:700}
+.lead{font-size:clamp(1.05rem,2vw,1.2rem);color:var(--muted);max-width:34em}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 26px;border-radius:999px;font-weight:700;font-size:1rem;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .15s}
+.btn--primary{background:var(--green);color:#fff}.btn--primary:hover{background:var(--green-d)}
+.btn--ghost{border-color:var(--green);color:var(--green)}.btn--ghost:hover{background:var(--leaf-50)}
+.btn--lime{background:var(--lime);color:var(--green-d)}.btn--lime:hover{background:#d6f066}
+.btn--sm{padding:10px 20px}
+
+/* Header */
+.header{position:sticky;top:0;z-index:50;background:rgba(250,251,247,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.header__in{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:72px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.5rem;color:var(--green-d);text-decoration:none}
+.nav{display:flex;align-items:center;gap:var(--s4)}
+.nav a:not(.btn){text-decoration:none;font-weight:600;color:var(--muted)}
+.nav a:not(.btn):hover{color:var(--green)}
+.burger{display:none;width:44px;height:44px;border:0;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{width:24px;height:2px;background:var(--green-d);border-radius:2px;transition:.2s}
+.open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.open .burger span:nth-child(2){opacity:0}
+.open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Hero */
+.hero{padding:var(--s7) 0 var(--s6)}
+.hero__in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--s6);align-items:center}
+.hero__text{display:flex;flex-direction:column;gap:var(--s3);align-items:flex-start}
+.actions{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.note{font-size:.9rem;color:var(--muted)}
+.hero__art{width:100%}
+
+/* Sections */
+.section{padding:var(--s7) 0}
+.section--alt{background:var(--leaf-50)}
+.section__head{display:flex;flex-direction:column;gap:var(--s1);margin-bottom:var(--s5);max-width:36em}
+.section__head p{color:var(--muted)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:var(--s3)}
+
+/* Feature cards */
+.card{display:flex;flex-direction:column;gap:var(--s2);padding:var(--s4);background:var(--white);border:1px solid var(--line);border-radius:20px}
+.card p{color:var(--muted)}
+.icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.6rem;background:var(--leaf-50)}
+.icon--lime{background:var(--lime)}.icon--tom{background:#FCE3DA}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:var(--s3)}
+.step{display:flex;flex-direction:column;gap:var(--s1);padding-top:var(--s2);border-top:3px solid var(--green)}
+.step b{color:var(--tomato);font-size:1.1rem}
+.step p{color:var(--muted)}
+
+/* Pricing */
+.plan{display:flex;flex-direction:column;gap:var(--s2);padding:var(--s4);background:var(--white);border:1px solid var(--line);border-radius:20px}
+.plan--best{background:var(--green-d);color:#fff;border-color:var(--green-d)}
+.plan--best h3,.plan--best .price{color:#fff}
+.plan--best li,.plan--best p{color:#D9E8D0}
+.price{font-size:2.2rem;font-weight:800;color:var(--green-d);line-height:1}
+.price small{font-size:1rem;font-weight:500;color:var(--muted)}
+.plan--best .price small{color:#D9E8D0}
+.plan ul{display:flex;flex-direction:column;gap:10px;color:var(--muted);flex:1}
+.plan li::before{content:"✓ ";color:var(--green);font-weight:800}
+.plan--best li::before{color:var(--lime)}
+.tag{align-self:flex-start;background:var(--lime);color:var(--green-d);font-size:.8rem;font-weight:800;padding:4px 12px;border-radius:999px}
+
+/* CTA */
+.cta{background:var(--green);color:#fff;border-radius:28px;padding:var(--s6) var(--s5);display:flex;flex-direction:column;align-items:flex-start;gap:var(--s2)}
+.cta h2{color:#fff}.cta p{color:#D9E8D0;margin-bottom:var(--s1)}
+
+/* Footer */
+.footer{background:var(--green-d);color:#CFE0C6;padding:var(--s6) 0 var(--s3);margin-top:var(--s7)}
+.footer__in{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:var(--s5)}
+.footer .logo{color:#fff}
+.footer p{margin-top:var(--s1);max-width:24em}
+.fcol{display:flex;flex-direction:column;gap:12px}
+.fcol h4{color:#fff;font-size:1rem}
+.fcol a{text-decoration:none;overflow-wrap:anywhere}.fcol a:hover{color:var(--lime)}
+.legal{margin-top:var(--s5);padding-top:var(--s3);border-top:1px solid #2C5A3B;font-size:.85rem}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .wrap{width:min(1120px,100% - 64px)}
+  .hero{padding:var(--s6) 0 var(--s5)}
+  .hero__in{gap:var(--s4)}
+  .section{padding:var(--s6) 0}
+  .nav{gap:var(--s3)}
+  .card,.plan{padding:var(--s3)}
+  .cta{padding:var(--s5) var(--s4)}
+}
+@media (max-width:768px){
+  .wrap{width:min(1120px,100% - 40px)}
+  .burger{display:flex}
+  .header__in{min-height:64px}
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 24px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(20,58,34,.1)}
+  .open .nav{display:flex}
+  .nav a:not(.btn){padding:15px 4px;font-size:1.1rem;border-bottom:1px solid var(--line)}
+  .nav .btn{margin-top:var(--s2)}
+  .hero{padding:var(--s5) 0 var(--s4)}
+  .hero__in{grid-template-columns:minmax(0,1fr)}
+  .hero__art{order:-1;max-width:440px;margin-inline:auto}
+  .section{padding:var(--s5) 0}
+  .section__head{margin-bottom:var(--s4)}
+  .cta{border-radius:20px;padding:var(--s5) var(--s3)}
+  .footer{margin-top:var(--s5)}
+  .footer__in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s4)}
+  .footer__in>div:first-child{grid-column:1/-1}
+}
+@media (max-width:480px){
+  body{font-size:15.5px}
+  .actions{flex-direction:column;width:100%}
+  .actions .btn,.cta .btn{width:100%}
+  .card,.plan{padding:20px}
+  .price{font-size:2rem}
+  .footer__in{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="header" id="top">
+  <div class="wrap header__in">
+    <a class="logo" href="#top" aria-label="KhetBox home">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="9" fill="#1F5130"/><path d="M8 20c0-6 4-10 14-10 0 6-4 10-14 10Zm0 0 7-7" stroke="#C8E64C" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      KhetBox
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#why">Why KhetBox</a>
+      <a href="#how">How it works</a>
+      <a href="#plans">Plans</a>
+      <a class="btn btn--primary btn--sm" href="#plans">Order a box</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero__in">
+      <div class="hero__text">
+        <h1>Vegetables picked this morning, at your door by evening.</h1>
+        <p class="lead">KhetBox brings a weekly box of seasonal vegetables straight from farms around Ahmedabad. Fair prices for farmers, fresher food for your family.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#plans">Order your first box</a>
+          <a class="btn btn--ghost" href="#how">See how it works</a>
+        </div>
+        <p class="note">Free delivery on your first box. Skip or cancel any week.</p>
+      </div>
+      <div class="hero__art" role="img" aria-label="Illustration of a wooden crate full of tomatoes, carrots, leafy greens and brinjal">
+        <svg viewBox="0 0 480 400" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="20" width="460" height="360" rx="32" fill="#EAF4E2"/>
+          <circle cx="390" cy="90" r="42" fill="#C8E64C"/>
+          <path d="M120 180c-20-50 10-90 60-90 20 40-10 90-60 90Z" fill="#2F7A44"/>
+          <path d="M190 170c0-55 40-80 90-70 0 50-35 80-90 70Z" fill="#3E9457"/>
+          <rect x="250" y="120" width="26" height="110" rx="13" fill="#F08A24" transform="rotate(18 263 175)"/>
+          <rect x="285" y="130" width="24" height="100" rx="12" fill="#F29B3F" transform="rotate(30 297 180)"/>
+          <ellipse cx="150" cy="215" rx="38" ry="34" fill="#E5532D"/>
+          <ellipse cx="215" cy="225" rx="34" ry="30" fill="#D4401C"/>
+          <ellipse cx="345" cy="220" rx="26" ry="42" fill="#5A3A7D" transform="rotate(-20 345 220)"/>
+          <rect x="60" y="235" width="360" height="120" rx="14" fill="#B07A47"/>
+          <rect x="60" y="235" width="360" height="26" rx="10" fill="#C48D58"/>
+          <path d="M60 290h360M60 325h360" stroke="#8F5F34" stroke-width="3"/>
+          <rect x="190" y="268" width="100" height="40" rx="8" fill="#FAFBF7"/>
+          <text x="240" y="295" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-weight="800" font-size="20" fill="#1F5130">KhetBox</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="why">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Better food, better for the farmer</h2>
+        <p>Three reasons families in Ahmedabad choose KhetBox over the weekly market run.</p>
+      </div>
+      <div class="grid3">
+        <article class="card">
+          <div class="icon" aria-hidden="true">🥬</div>
+          <h3>Picked within 12 hours</h3>
+          <p>Farmers harvest after your order comes in, so vegetables reach you crisp instead of sitting in a warehouse.</p>
+        </article>
+        <article class="card">
+          <div class="icon icon--lime" aria-hidden="true">🌾</div>
+          <h3>Farmers keep more</h3>
+          <p>We pay farmers directly. No middlemen means about 40% more of every rupee reaches the farm.</p>
+        </article>
+        <article class="card">
+          <div class="icon icon--tom" aria-hidden="true">🔁</div>
+          <h3>Skip anytime</h3>
+          <p>Travelling this week? Skip, pause or cancel from your phone before 8 PM the day before.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="section__head"><h2>How it works</h2></div>
+      <ol class="steps">
+        <li class="step"><b>Step 1</b><h3>Choose your box</h3><p>Pick a size that fits your household.</p></li>
+        <li class="step"><b>Step 2</b><h3>We harvest</h3><p>Partner farms pick your vegetables the next morning.</p></li>
+        <li class="step"><b>Step 3</b><h3>You cook</h3><p>Your box arrives between 5 and 8 PM with a recipe card.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="plans">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Pick a box that fits your kitchen</h2>
+        <p>Prices include delivery within Ahmedabad.</p>
+      </div>
+      <div class="grid3">
+        <article class="plan">
+          <h3>Solo</h3>
+          <p class="price">₹299 <small>/ week</small></p>
+          <ul><li>4–5 vegetables</li><li>Good for 1–2 people</li><li>Weekly recipe card</li></ul>
+          <a class="btn btn--ghost" href="#order">Choose Solo</a>
+        </article>
+        <article class="plan plan--best">
+          <span class="tag">Most popular</span>
+          <h3>Family</h3>
+          <p class="price">₹549 <small>/ week</small></p>
+          <ul><li>7–8 vegetables</li><li>Good for 3–4 people</li><li>Free herbs every week</li></ul>
+          <a class="btn btn--lime" href="#order">Choose Family</a>
+        </article>
+        <article class="plan">
+          <h3>Big Kitchen</h3>
+          <p class="price">₹899 <small>/ week</small></p>
+          <ul><li>12+ vegetables</li><li>Good for 5–7 people</li><li>Add fruit for ₹150</li></ul>
+          <a class="btn btn--ghost" href="#order">Choose Big Kitchen</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="order" style="padding-bottom:0">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Get your first box this week</h2>
+        <p>Order in two minutes. Delivery is free on your first box.</p>
+        <a class="btn btn--lime" href="#plans">Order a box</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__in">
+      <div>
+        <a class="logo" href="#top">KhetBox</a>
+        <p>Fresh vegetables from local farms, delivered across Ahmedabad.</p>
+      </div>
+      <nav class="fcol" aria-label="Explore"><h4>Explore</h4><a href="#why">Why KhetBox</a><a href="#how">How it works</a><a href="#plans">Plans</a></nav>
+      <nav class="fcol" aria-label="Contact"><h4>Contact</h4><a href="mailto:hello@khetbox.example">hello@khetbox.example</a><a href="tel:+910000000000">+91 00000 00000</a></nav>
+    </div>
+    <p class="legal">© 2026 KhetBox. Fictional brand created for a UI/UX practice task.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var header=document.getElementById('top'),btn=document.getElementById('burger'),nav=document.getElementById('nav');
+  function set(o){header.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);btn.setAttribute('aria-label',o?'Close menu':'Open menu');}
+  btn.addEventListener('click',function(){set(btn.getAttribute('aria-expanded')!=='true');});
+  nav.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+  window.addEventListener('resize',function(){if(window.innerWidth>768)set(false);});
+})();
+</script>
+</body>
+</html>
